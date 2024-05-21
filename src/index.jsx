@@ -1,3 +1,5 @@
+// Uncomment to enable why-did-you-render:
+// import "./wdyr";
 import React from "react";
 import ReactDOM from "react-dom";
 import ReactDOMClient from "react-dom/client";
@@ -8,6 +10,7 @@ import reduxStore from "./store/redux";
 import mobxStore from "./store/mobx";
 import "./index.css";
 import { createTheme, ThemeProvider } from "@mui/material";
+import { DarkModeProvider } from "./components/DarkModeContext";
 
 const theme = createTheme({
   typography: {
@@ -51,7 +54,9 @@ const element = (
                 Workshop warning: running in the React 17 mode.
               </div>
             )}
-            <App mobxStore={mobxStore} />
+            <DarkModeProvider>
+              <App mobxStore={mobxStore} />
+            </DarkModeProvider>
           </ThemeProvider>
         )}
       </MobxReact.Observer>
