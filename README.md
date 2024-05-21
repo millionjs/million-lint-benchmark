@@ -1,3 +1,7 @@
+> This is a fork of [react-performance-workshop](https://github.com/3perf/react-workshop-ra) with `*.correct.jsx` files added to represent optimizations we've trained Million Lint to do.
+
+---
+
 # `react-performance-workshop` <img src="https://user-images.githubusercontent.com/2953267/212215914-68e776eb-ed5f-439a-85dd-d31759a03196.svg" width="6">
 
 Welcome! This is the material for React Performance Debugging Masterclass at React Advanced (Oct 2023).
