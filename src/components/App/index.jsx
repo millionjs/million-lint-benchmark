@@ -16,7 +16,6 @@ import "./index.css";
 import "./index-pro.css";
 import { DarkModeProvider } from "../DarkModeContext";
 import StatusBar from "../StatusBar";
-import { init } from "@million/lint/runtime";
 
 const jabber = new Jabber();
 

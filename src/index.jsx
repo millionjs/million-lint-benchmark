@@ -1,29 +1,4 @@
-// import { init } from "@million/lint/runtime";
 import React from "react";
-import * as Sentry from "@sentry/react";
-
-// init();
-
-// Sentry.init({
-//   dsn: "https://7f983b54607ed2d908612641ae0f54b7@o4505682763382784.ingest.us.sentry.io/4506992941400064",
-//   integrations: [
-//     Sentry.browserTracingIntegration(),
-//     Sentry.replayIntegration({
-//       maskAllText: false,
-//       blockAllMedia: false,
-//     }),
-//   ],
-//   // Performance Monitoring
-//   tracesSampleRate: 1.0, //  Capture 100% of the transactions
-//   // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
-//   tracePropagationTargets: ["localhost", /^https:\/\/yourserver\.io\/api/],
-//   // Session Replay
-//   replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
-//   replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
-// });
-
-// Uncomment to enable why-did-you-render:
-// import "./wdyr";
 import ReactDOM from "react-dom";
 import ReactDOMClient from "react-dom/client";
 import * as MobxReact from "mobx-react-lite";
@@ -67,7 +42,6 @@ const useReact18 = true;
 
 const element = (
   <React.StrictMode>
-    {/* <Sentry.ErrorBoundary showDialog> */}
     <ReactRedux.Provider store={reduxStore}>
       <MobxReact.Observer>
         {() => (
@@ -82,7 +56,6 @@ const element = (
         )}
       </MobxReact.Observer>
     </ReactRedux.Provider>
-    {/* </Sentry.ErrorBoundary> */}
   </React.StrictMode>
 );
 

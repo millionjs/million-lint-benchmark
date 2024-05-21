@@ -2,7 +2,6 @@
   "name": "react-workshop-notes-app",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "yarn@3.2.1",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
