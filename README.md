@@ -1,6 +1,6 @@
 > This is a fork of [react-performance-workshop](https://github.com/3perf/react-workshop-ra) with `*.correct.jsx` files added to represent optimizations we've trained Million Lint to do.
 
-<a href="https://stackblitz.com/github/millionjs/million-performance-benchmark">
+<a href="https://stackblitz.com/github/millionjs/million-lint-benchmark">
   <img
     alt="Open in StackBlitz"
     src="https://developer.stackblitz.com/img/open_in_stackblitz.svg"
