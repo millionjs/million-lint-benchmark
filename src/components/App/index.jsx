@@ -1,21 +1,22 @@
-import { formatISO } from "date-fns";
-import Jabber from "jabber";
-import { nanoid } from "nanoid";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { formatISO } from 'date-fns';
+import Jabber from 'jabber';
+import { nanoid } from 'nanoid';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   deleteNotes,
   getNotes,
   putNote,
   saveNotesToLocalStorage,
-} from "../../utils/storage";
-import { updateLastActiveDate } from "../../store/redux/userReducer";
-import NotesList from "../NotesList";
-import PrimaryPane from "../PrimaryPane";
-import "./index.css";
-import "./index-pro.css";
-import { DarkModeProvider } from "../DarkModeContext";
-import StatusBar from "../StatusBar";
+} from '../../utils/storage';
+import { updateLastActiveDate } from '../../store/redux/userReducer';
+import NotesList from '../NotesList';
+import PrimaryPane from '../PrimaryPane';
+import './index.css';
+import './index-pro.css';
+import { DarkModeProvider } from '../DarkModeContext';
+import StatusBar from '../StatusBar';
+import { Monitoring } from 'react-scan/monitoring';
 
 const jabber = new Jabber();
 
@@ -33,7 +34,7 @@ function App({ mobxStore }) {
     setNotes(newNotes);
 
     dispatch(
-      updateLastActiveDate(formatISO(new Date(), { representation: "date" })),
+      updateLastActiveDate(formatISO(new Date(), { representation: 'date' }))
     );
   };
 
@@ -45,30 +46,30 @@ function App({ mobxStore }) {
       for (let j = 0; j < paragraphs; j++) {
         let line = jabber.createParagraph(30);
 
-        noteText += "\n\n" + line;
+        noteText += '\n\n' + line;
       }
 
       // Make random words bold or italic
       noteText = noteText
-        .split("\n")
+        .split('\n')
         .map((line) =>
           line
-            .split(" ")
+            .split(' ')
             .filter(Boolean)
             .map((word) => {
               if (Math.random() < 0.05) {
-                return "**" + word + "**";
+                return '**' + word + '**';
               }
 
               if (Math.random() < 0.05) {
-                return "_" + word + "_";
+                return '_' + word + '_';
               }
 
               return word;
             })
-            .join(" "),
+            .join(' ')
         )
-        .join("\n");
+        .join('\n');
 
       putNote(noteId, { text: noteText });
     }
@@ -92,36 +93,44 @@ function App({ mobxStore }) {
   };
 
   return (
-    <DarkModeProvider>
-      <div className="notes">
-        <div className="notes__columns">
-          <div className="notes__column notes__column_list">
-            <h1>NoteList</h1>
-            <div className="notes__column-content">
-              <NotesList
-                notes={notes}
-                activeNoteId={activeNoteId}
-                onNoteActivated={setActiveNoteId}
-                onNewNotesRequested={createNewNotes}
-                onDeleteAllRequested={deleteAllNotes}
-              />
+    <>
+      <Monitoring
+        apiKey="ehCLSw-weeRUwE0W96dUpVWdTClxNv-M"
+        url="https://monitoring.react-scan.com/api/v1/ingest"
+        params={{}}
+        path={'/'}
+      />
+      <DarkModeProvider>
+        <div className="notes">
+          <div className="notes__columns">
+            <div className="notes__column notes__column_list">
+              <h1>NoteList</h1>
+              <div className="notes__column-content">
+                <NotesList
+                  notes={notes}
+                  activeNoteId={activeNoteId}
+                  onNoteActivated={setActiveNoteId}
+                  onNewNotesRequested={createNewNotes}
+                  onDeleteAllRequested={deleteAllNotes}
+                />
+              </div>
+            </div>
+            <div className="notes__column notes__column_primary">
+              <div className="notes__column-content">
+                <PrimaryPane
+                  activeNoteId={activeNoteId}
+                  notes={notes}
+                  saveNote={saveNote}
+                />
+              </div>
             </div>
           </div>
-          <div className="notes__column notes__column_primary">
-            <div className="notes__column-content">
-              <PrimaryPane
-                activeNoteId={activeNoteId}
-                notes={notes}
-                saveNote={saveNote}
-              />
-            </div>
+          <div className="notes__status-bar">
+            <StatusBar store={mobxStore.statusBar} />
           </div>
         </div>
-        <div className="notes__status-bar">
-          <StatusBar store={mobxStore.statusBar} />
-        </div>
-      </div>
-    </DarkModeProvider> // 5, parentIndex: null
+      </DarkModeProvider>
+    </>
   );
 }
 
