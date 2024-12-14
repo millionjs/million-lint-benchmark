@@ -95,7 +95,7 @@ function App({ mobxStore }) {
   return (
     <>
       <Monitoring
-        apiKey="ehCLSw-weeRUwE0W96dUpVWdTClxNv-M"
+        apiKey="rSrCbp8XkYttq6u6A93ElUWCkJ3hGn-8"
         url="https://monitoring.react-scan.com/api/v1/ingest"
         params={{}}
         path={'/'}
